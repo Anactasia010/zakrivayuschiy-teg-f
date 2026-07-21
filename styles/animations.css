@@ -9,3 +9,14 @@
 ✦ button__text — для обозначения текстового элемента внутри кнопки
 
 */
+@keyframes scaling {
+  to {
+    scale: 1.25;
+  }
+}
+
+@keyframes shining {
+  to {
+    opacity: 1;
+  }
+}
