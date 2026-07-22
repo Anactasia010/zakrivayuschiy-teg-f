@@ -75,6 +75,7 @@
   background-color: #fff;
   border: 2px solid #000;
   margin-bottom: 50px;
+  width: 100%;
 }
 
 .card-title {
@@ -91,34 +92,34 @@
 
 .img-container {
   width: 100%;
-  height: 371px;
+  height: 60vh;
   position: relative;
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
 }
-.first {
+.normal-filter {
   mix-blend-mode: normal;
 }
-.second {
+.grayscale-filter {
   filter: grayscale(70%) contrast(90%);
 }
-.third {
+.contrast-filter {
   filter: brightness(1.1) contrast(1.8) sepia(0.3) hue-rotate(300deg)
     saturate(3);
 }
-.fourth {
+.luminosity-filter {
   mix-blend-mode: luminosity;
 }
-.fifth {
-  filter: saturate(200%);
+.more-saturate-filter {
+  filter: saturate(300%);
 }
-.card .images.sixth {
+.card .images.sepia-filter {
   filter: sepia(80%);
 }
-.seventh .images {
+.blur-filter .images {
   filter: blur(1px);
 }
-.eighth {
+.saturate-filter {
   filter: saturate(200%);
 }
 
@@ -126,6 +127,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  aspect-ratio: auto;
 }
 
 .label {
@@ -199,21 +201,21 @@
   border-color: var(--accent-color);
 }
 
-svg.like-icon path.sparks {
+path.sparks {
   opacity: 0;
 }
 
-svg.like-icon g path.contour {
+g path.contour {
   transition: fill 0.1s linear;
 }
 
-svg.like-icon g path.core {
+g path.core {
   opacity: 0;
   transition: fill 0.3s linear;
   transition-delay: 0.03s;
 }
 
-svg.like-icon g path.main-body {
+g path.main-body {
   opacity: 0;
   transition: fill 0.3s linear;
 }
@@ -277,25 +279,30 @@ svg.like-icon g path.main-body {
   transition-delay: 0.05s;
 }
 
-.card__like-button {
+.button {
   all: unset;
   position: relative;
-  width: 130px;
-  height: 38px;
   text-align: center;
   border: 2px solid #000;
   cursor: pointer;
   transition: box-shadow 0.3s ease;
   overflow: hidden;
   background-color: var(--btn-bg-default);
+  color: #000;
+  transition: color 0.5s ease-out;
 }
 
-.card__like-button:focus {
+.card__like-button {
+  width: 130px;
+  height: 38px;
+}
+
+.button:focus {
   outline: none;
   box-shadow: 2px 2px 0px var(--accent-color);
 }
 
-.card__like-button::before {
+.button::before {
   content: "";
   position: absolute;
   left: 0;
@@ -307,8 +314,12 @@ svg.like-icon g path.main-body {
   transition: width 0.5s ease-out;
 }
 
-.card__like-button:hover::before {
+.button:hover::before {
   width: 100%;
+}
+
+.button:hover {
+  color: #fff;
 }
 
 .button__text {
@@ -319,17 +330,16 @@ svg.like-icon g path.main-body {
   line-height: 90%;
   letter-spacing: 0px;
   position: relative;
-  transition: color 0.5s ease-out;
   z-index: 3;
   color: #000;
   margin-bottom: 17px;
 }
 
-.card__like-button:hover .button__text {
+.button:hover .button__text {
   color: #fff;
 }
 
-.footer {
+.save {
   align-items: center;
   justify-items: center;
   margin-bottom: 100px;
@@ -337,68 +347,32 @@ svg.like-icon g path.main-body {
   margin-left: 34.5px;
 }
 
-.button_footer {
-  all: unset;
-  position: relative;
+.button_save {
   width: var(--button-width);
   height: 84px;
-  background-color: #fff;
-  font-family: var(--accent-font, sans-serif);
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 90%;
-  letter-spacing: 0px;
   display: grid;
   align-items: center;
   justify-items: center;
   grid-template-rows: repeat(2, 1fr);
-  cursor: pointer;
-  border: 2px solid #000;
-  overflow: hidden;
-  color: #000;
 }
 
-.button_footer:focus {
-  outline: none;
-  box-shadow: 2px 2px 0px var(--accent-color);
-}
-
-.button_footer::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 0px;
-  height: 100%;
-  z-index: 2;
-  background-color: var(--accent-color);
-  transition: width 0.5s ease-out;
-}
-
-.button_footer:hover::before {
-  width: 100%;
-}
-
-.floppydisk-icon_footer {
+.floppydisk-icon_save {
   width: 28px;
   height: 28px;
-  margin-top: 17px;
-  margin-bottom: 8px;
   z-index: 3;
 }
 
-.button_footer:hover .button__text {
-  color: #fff;
+.floppydisk-icon_save .mobile-icon {
+  display: inline;
 }
 
-.button_footer:hover {
-  color: #fff;
+.floppydisk-icon_save .desktop-icon {
+  display: none;
 }
 
 dialog {
   border: 2px solid #000;
   width: 341px;
-  min-height: 191px;
   position: fixed;
   inset: 0;
   display: grid;
@@ -435,52 +409,14 @@ dialog:not([open]) {
 }
 
 .dialog-button {
-  all: unset;
-  font-family: var(--accent-font, "Arial", sans-serif);
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 90%;
-  letter-spacing: 0px;
-  color: #000;
   text-transform: uppercase;
-  cursor: pointer;
   padding: 12.5px 116.5px;
-  border: 2px solid #000;
   text-align: center;
   grid-column: 1 / span 2;
-  transition: box-shadow 0.3s ease;
-  overflow: hidden;
-  position: relative;
-}
-
-.dialog-button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0px var(--accent-color);
-}
-
-.dialog-button::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 0px;
-  height: 100%;
-  z-index: 2;
-  background-color: var(--accent-color);
-  transition: width 0.5s ease-out;
-}
-
-.dialog-button:hover::before {
-  width: 100%;
-}
-
-.dialog-button:hover .button__text {
-  color: #fff;
 }
 
 @media (width >= 375px) {
-  .button_footer {
+  .button_save {
     display: flex;
     justify-content: center;
     gap: 8px;
@@ -489,7 +425,19 @@ dialog:not([open]) {
   .button__text {
     margin: 0px;
   }
-  .floppydisk-icon_footer {
+
+  .floppydisk-icon_save {
     margin: 0px;
+    width: 21px;
+    height: 21px;
+    z-index: 3;
+  }
+
+  .floppydisk-icon_save .mobile-icon {
+    display: none;
+  }
+
+  .floppydisk-icon_save .desktop-icon {
+    display: inline;
   }
 }
