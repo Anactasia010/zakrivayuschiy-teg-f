@@ -31,8 +31,8 @@
 }
 
 .logo {
-  margin-top: clamp(122px, 50vw, 130px);
-  margin-bottom: clamp(122px, 50vw, 130px);
+  margin-top: 122px;
+  margin-bottom: 122px;
   margin-left: clamp(16px, 8vw, 122.5px);
   margin-right: clamp(16px, 8vw, 122.5px);
   display: flex;
@@ -84,18 +84,19 @@
   font-size: 18px;
   line-height: 100%;
   letter-spacing: 0px;
-  margin-top: 4px;
-  margin-bottom: 4px;
+  margin-top: 6px;
+  margin-bottom: 6px;
   margin-left: 10px;
   margin-right: 10px;
 }
 
 .img-container {
   width: 100%;
-  height: 60vh;
+  height: 100%;
   position: relative;
   border-top: 2px solid #000;
   border-bottom: 2px solid #000;
+  aspect-ratio: 1/1;
 }
 .normal-filter {
   mix-blend-mode: normal;
@@ -127,7 +128,6 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  aspect-ratio: auto;
 }
 
 .label {
@@ -170,6 +170,7 @@
   margin-top: 25px;
   margin-left: 25px;
   margin-right: 25px;
+  margin-bottom: 25px;
 }
 
 .text_paragraph {
@@ -181,12 +182,13 @@
 }
 
 .button-card {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   margin-right: 25px;
   margin-top: 25px;
+  margin-left: 10px;
   display: flex;
   justify-content: flex-end;
-  gap: 12px;
+  gap: 4px;
 }
 
 .card__icon-button {
@@ -205,17 +207,17 @@ path.sparks {
   opacity: 0;
 }
 
-g path.contour {
+.contour {
   transition: fill 0.1s linear;
 }
 
-g path.core {
+.core {
   opacity: 0;
   transition: fill 0.3s linear;
   transition-delay: 0.03s;
 }
 
-g path.main-body {
+.main-body {
   opacity: 0;
   transition: fill 0.3s linear;
 }
@@ -288,8 +290,7 @@ g path.main-body {
   transition: box-shadow 0.3s ease;
   overflow: hidden;
   background-color: var(--btn-bg-default);
-  color: #000;
-  transition: color 0.5s ease-out;
+  color: #fff;
 }
 
 .card__like-button {
@@ -318,10 +319,6 @@ g path.main-body {
   width: 100%;
 }
 
-.button:hover {
-  color: #fff;
-}
-
 .button__text {
   font-family: var(--accent-font, "Noto Sans", sans-serif);
   font-weight: 400;
@@ -331,12 +328,9 @@ g path.main-body {
   letter-spacing: 0px;
   position: relative;
   z-index: 3;
-  color: #000;
-  margin-bottom: 17px;
-}
 
-.button:hover .button__text {
-  color: #fff;
+  margin-bottom: 10px;
+  mix-blend-mode: difference;
 }
 
 .save {
@@ -357,17 +351,16 @@ g path.main-body {
 }
 
 .floppydisk-icon_save {
+  margin-top: 17px;
   width: 28px;
   height: 28px;
   z-index: 3;
+  mix-blend-mode: difference;
 }
 
-.floppydisk-icon_save .mobile-icon {
-  display: inline;
-}
-
-.floppydisk-icon_save .desktop-icon {
-  display: none;
+svg use {
+  width: 100%;
+  height: 100%;
 }
 
 dialog {
@@ -377,9 +370,15 @@ dialog {
   inset: 0;
   display: grid;
   grid-template-rows: 2fr 1fr;
-  grid-template-columns: 1fr 9fr;
+  grid-template-columns: 1fr 10fr;
+  row-gap: 10px;
   column-gap: 20px;
-  padding: 30px 40px;
+
+  padding-top: 10px;
+  padding-bottom: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  align-items: center;
 }
 
 dialog::backdrop {
@@ -400,6 +399,7 @@ dialog:not([open]) {
 .dialog-text {
   font-family: var(--accent-font, "Arial", sans-serif);
   font-weight: 400;
+  max-width: 234px;
   font-style: normal;
   font-size: 14px;
   line-height: 150%;
@@ -415,12 +415,17 @@ dialog:not([open]) {
   grid-column: 1 / span 2;
 }
 
-@media (width >= 375px) {
+@media (width > 375px) {
+  .logo {
+    margin-top: 130px;
+    margin-bottom: 130px;
+  }
   .button_save {
     display: flex;
     justify-content: center;
     gap: 8px;
     height: 55px;
+    width: 335px;
   }
   .button__text {
     margin: 0px;
@@ -431,13 +436,5 @@ dialog:not([open]) {
     width: 21px;
     height: 21px;
     z-index: 3;
-  }
-
-  .floppydisk-icon_save .mobile-icon {
-    display: none;
-  }
-
-  .floppydisk-icon_save .desktop-icon {
-    display: inline;
   }
 }
